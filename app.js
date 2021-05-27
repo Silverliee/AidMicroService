@@ -3,12 +3,12 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-// const goodDealController = require('./Controller/GoodDealController');
+const config = require('./config.json');
 const organizationController = require('./Controller/OrganizationController');
 const categoryController = require('./Controller/CategoryController');
 
 //Mongoose initialisation
-mongoose.connect('mongodb+srv://mohamed:414498200@silver-cluster.yegdt.mongodb.net/StudHelpDataBase?retryWrites=true&w=majority',
+mongoose.connect(config.MONGO_URL,
 	{
 		useNewUrlParser: true,
 		useUnifiedTopology: true
@@ -37,7 +37,6 @@ app.use((req, res, next) => {
 });
 
 // gestion des controllers
-// app.use('/gooddeals', goodDealController);
 app.use('/organizations', organizationController);
 app.use('/categories', categoryController);
 
